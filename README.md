@@ -13,7 +13,7 @@ Before using this script, ensure you have the following installed:
 You can install the required libraries using pip:
 
 ```
-pip install yfinance pandas
+pip install -r requirements.txt
 ```
 
 ## Usage
