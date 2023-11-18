@@ -7,4 +7,4 @@
 5. Pray to God
 
 ### Links
-[Installation Files] (https://drive.google.com/drive/folders/1hGfdlEtrBCzpPwe2tadU0fi5FZX3JLMT?usp=sharing)
+[Installation Files](https://drive.google.com/drive/folders/1hGfdlEtrBCzpPwe2tadU0fi5FZX3JLMT?usp=sharing)
