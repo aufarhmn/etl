@@ -4,7 +4,8 @@ frames/*.csv
 
 #secrets
 .env
+.env.production
 
-cache
+#cache
 */__pycache__
 __pycache__
