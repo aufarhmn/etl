@@ -1,5 +1,10 @@
 #datasets
+frames/*.csv
 *.csv
 
 #secrets
 .env
+
+cache
+*/__pycache__
+__pycache__
