@@ -26,8 +26,8 @@ def SparkInit():
     return spark
 
 def Extract(spark) -> tuple:
-    YGStock_path = "../frames/2023-11-20_YGStock.csv"
-    trend_path = "../frames/2023-11-20_search-trend.csv"
+    YGStock_path = f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_YGStock')}.csv"
+    trend_path = f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}.csv"
 
     YG_df = spark.read.csv(YGStock_path, header=True)
     trend_df = spark.read.csv(trend_path, header=True)
