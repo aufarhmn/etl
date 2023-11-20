@@ -31,13 +31,14 @@ df.show()
 columns_to_remove = ['Volume', 'Dividends', 'Stock Splits']
 df = df.drop(*columns_to_remove)
 
-#  TODO: FORMATING DATE TO MATCH EACH OTHER
+# Format the 'Date' column
+df = df.withColumn("Date", col("Date").substr(1, 10))
 
 print("Transformed DataFrame:")
 df.show()
 
 output_path = "./YGStockTransformed"
 
-df.write.option("header", "true").csv(output_path)
+df.write.mode("overwrite").option("header", "true").csv(output_path)
 
 spark.stop()
