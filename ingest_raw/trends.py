@@ -3,10 +3,8 @@ import csv
 import datetime as dt
 import pandas as pd
 from apify_client import ApifyClient
-from dotenv import load_dotenv
 
 def ApifyInit():
-    load_dotenv()
     client = ApifyClient(os.getenv('APIFY_TOKEN'))
     return client
 
@@ -24,7 +22,7 @@ def Ingest():
         "csvOutput": True,
         }
         run = client.actor("emastra/google-trends-scraper").call(run_input=run_input)
-        FILE_NAME = f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_{idx}.csv"
+        FILE_NAME = f"frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_{idx}.csv"
         
         with open(FILE_NAME, mode='w', newline='') as csv_file:
             fieldnames = ['date', 'Blackpink']
@@ -38,8 +36,8 @@ def ExtractTrends() -> None:
     Ingest()
     
     # some transformation to merge ingested raw data
-    df0 = pd.read_csv("../frames/2023-11-21_search-trend_0.csv")
-    df1 = pd.read_csv("../frames/2023-11-21_search-trend_1.csv")
+    df0 = pd.read_csv(f"frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_0.csv")
+    df1 = pd.read_csv(f"frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_1.csv")
     
     df0['date'] = pd.to_datetime(df0['date']) \
                     .dt.tz_convert("Asia/Jakarta") \
@@ -52,9 +50,10 @@ def ExtractTrends() -> None:
     
     merged_df = df0.set_index('date').combine_first(df1.set_index('date')).reset_index()
     
-    FILE_NAME = f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}.csv"
+    FILE_NAME = f"frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}.csv"
     
     merged_df.to_csv(FILE_NAME, index=False)
-    os.remove(f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_0.csv")
-    os.remove(f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_1.csv")
+    os.remove(f"frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_0.csv")
+    os.remove(f"frames/{dt.datetime.now().strftime('%Y-%m-%d_search-trend')}_1.csv")
     print(f"file saved to {FILE_NAME}")
+    return merged_df
