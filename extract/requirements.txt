@@ -1,4 +1,0 @@
-apify-client==1.5.0
-yfinance==0.2.31
-pandas
-python-dotenv

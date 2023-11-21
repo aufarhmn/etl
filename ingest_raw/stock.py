@@ -8,8 +8,9 @@ def ExtractStock() -> None:
 
     historical_data = yg_stock.history(period='1mo')
 
-    FILE_NAME = f"../frames/{dt.datetime.now().strftime('%Y-%m-%d_YGStock')}.csv"
+    FILE_NAME = f"frames/{dt.datetime.now().strftime('%Y-%m-%d_YGStock')}.csv"
 
     historical_data.to_csv(FILE_NAME)
 
     print(f"Data saved to {FILE_NAME}")
+    return historical_data

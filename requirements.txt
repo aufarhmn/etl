@@ -1,0 +1,6 @@
+apify-client==1.5.0
+yfinance==0.2.31
+pandas==2.1.3
+python-dotenv==1.0.0
+pyspark
+findspark
