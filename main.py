@@ -1,3 +1,4 @@
+import subprocess
 from dotenv import load_dotenv
 from ingest_raw.ingest import StartIngest
 from pipeline.etl import StartPipeline
@@ -7,5 +8,4 @@ if __name__ == '__main__':
     StartIngest()
     StartPipeline()
     
-    # TODO: delete /frames folder after ETL pipeline completed
-    #
+    subprocess.call("rm -rf frames", shell=True)

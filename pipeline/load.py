@@ -17,4 +17,7 @@ def Load(transformed_df):
     subprocess.call(bash, shell=True)
     print("Snapshot created")
     
-    # TODO: load to postgreSQL database
+    print("Loading to PostgreSQL database...")
+    engine = create_engine(os.getenv('PG_CONNECTION'))
+    transformed_df.to_sql('stock_trend', engine, index=False, if_exists='replace')
+    print("Loading success.")
